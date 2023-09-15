@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import InvoiceForm from "./InvoiceForm";
 
+export const myContext = React.createContext();
 function App() {
+  const [currency, setCurrency] = React.useState("INR");
+  const [tax, setTax] = React.useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Invoice Generator</h1>
+
+      <myContext.Provider value={{ myCurrency: currency, myTax: tax }}>
+        <InvoiceForm />
+      </myContext.Provider>
     </div>
   );
 }
